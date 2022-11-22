@@ -77,6 +77,7 @@
             </v-card-title>
 
             <v-card-text>
+              <v-form v-model="valid" ref="form">
               <v-container>
                 <v-row>
                   <v-col
@@ -87,6 +88,7 @@
                     <v-text-field
                       v-model="editedItem.title"
                       label="Add Title"
+                      :rules="titleFieldRule"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -97,10 +99,12 @@
                     <v-textarea
                       v-model="editedItem.content"
                       label="Add Content"
+                      :rules="contentFieldRule"
                     ></v-textarea>
                   </v-col>
                 </v-row>
               </v-container>
+              </v-form>
             </v-card-text>
 
             <v-card-actions>
@@ -159,6 +163,14 @@ import { noteService } from '../services/services'
 
     setup(){
       const { getNotes } = noteService();
+      const valid = false
+      const form = ref(null)
+      const titleFieldRule = [
+        v => !!v || 'Title is required',
+      ]
+      const contentFieldRule = [
+        v => !!v || 'Content is required',
+      ]
       const dialog = ref(false)
       const dialogDelete = ref(false)
       const selected = ref([]);
@@ -182,6 +194,7 @@ import { noteService } from '../services/services'
           title: '',
           content: ''
         }
+        form.value.reset()
       }
 
       const close = () => {
@@ -190,6 +203,10 @@ import { noteService } from '../services/services'
       }
 
       const save = () => {
+        form.value.validate()
+
+        if(!valid.value) return false
+
         var lastItem = notes.value[notes.value.length-1]
         notes.value.push({
           "id": lastItem.id + 1,
@@ -225,6 +242,10 @@ import { noteService } from '../services/services'
         editedItem,
         notes,
         selected,
+        titleFieldRule,
+        contentFieldRule,
+        valid,
+        form,
         close,
         save,
         cancelDelete,
