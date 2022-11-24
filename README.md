@@ -22,15 +22,15 @@ https://main.d21pfuewvjwmcm.amplifyapp.com/
 ![Main page](./public/app_screenshots/main.jpg?raw=true "Main Page")
 
 #### Add Modal
-![Add Modal](./public/app_screenshots/add_note.png?raw=true "Add Modal")
+![Add Modal](./public/app_screenshots/add_note.jpg?raw=true "Add Modal")
 
 #### Add Success
-![Add Success](./public/app_screenshots/new_note.png?raw=true "Add Success")
+![Add Success](./public/app_screenshots/new_note.jpg?raw=true "Add Success")
 
 #### Show Delete
-![Show Delete](./public/app_screenshots/show_delete.png?raw=true "Show Delete")
+![Show Delete](./public/app_screenshots/show_delete.jpg?raw=true "Show Delete")
 
 #### Delete Success
-![Delete Success](./public/app_screenshots/note_delete.png?raw=true "Delete Success")
+![Delete Success](./public/app_screenshots/note_delete.jpg?raw=true "Delete Success")
 
 
