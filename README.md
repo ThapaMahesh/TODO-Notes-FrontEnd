@@ -18,10 +18,19 @@ https://main.d21pfuewvjwmcm.amplifyapp.com/
 ## [Api](http://myapi-env.eba-j2mwvhwx.eu-west-2.elasticbeanstalk.com/notes)
 
 ## Screenshots
+#### Main Page
 ![Main page](./public/app_screenshots/main.jpg?raw=true "Main Page")
-![Add Modal](/repository/assets/add_note.png?raw=true "Add Modal")
-![Add Success](/repository/assets/new_note.png?raw=true "Add Success")
-![Show Delete](/repository/assets/show_delete.png?raw=true "Show Delete")
-![Delete Success](/repository/assets/note_delete.png?raw=true "Delete Success")
+
+#### Add Modal
+![Add Modal](./public/app_screenshots/add_note.png?raw=true "Add Modal")
+
+#### Add Success
+![Add Success](./public/app_screenshots/new_note.png?raw=true "Add Success")
+
+#### Show Delete
+![Show Delete](./public/app_screenshots/show_delete.png?raw=true "Show Delete")
+
+#### Delete Success
+![Delete Success](./public/app_screenshots/note_delete.png?raw=true "Delete Success")
 
 
