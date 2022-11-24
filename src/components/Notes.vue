@@ -1,5 +1,19 @@
 <template>
   <v-container>
+    <v-row class="text-center">
+      <v-alert
+        type="success"
+        v-if="isNew"
+        @click="closeMessage"
+        class="success-message"
+      >
+        <v-row align="center">
+          <v-col class="grow">
+            {{ successMessage }}
+          </v-col>
+        </v-row>
+      </v-alert>
+    </v-row>
     <v-row class="text-center" outlined>
       <v-col cols="8">
         <v-card
@@ -109,15 +123,6 @@
             </v-card-text>
 
             <v-card-actions class="action-btn">
-              <!-- <v-spacer></v-spacer> -->
-              <v-btn
-                color="blue darken-1"
-                text
-                @click="close"
-                id="close-btn"
-              >
-                Cancel
-              </v-btn>
               <v-btn
                 color="primary"
                 @click="save"
@@ -125,6 +130,14 @@
                 id="save-btn"
               >
                 Save
+              </v-btn>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="close"
+                id="close-btn"
+              >
+                Cancel
               </v-btn>
             <v-spacer></v-spacer>
             </v-card-actions>
@@ -168,6 +181,9 @@ import { noteService } from '../services/services'
     setup(){
       const { getNotes } = noteService();
       const form = ref(null)
+      const isNew = ref(false)
+      const successMessage = ref("")
+
       const titleFieldRule = [
         v => !!v || 'Title is required',
       ]
@@ -216,7 +232,14 @@ import { noteService } from '../services/services'
           "status": "New"
         })
 
+        successMessage.value = "New note added"
+        isNew.value = true
+
         close()
+      }
+
+      const closeMessage = () => {
+        isNew.value = false
       }
 
       const cancelDelete = () => {
@@ -228,6 +251,9 @@ import { noteService } from '../services/services'
           const index = notes.value.findIndex(item => item.id == a.id)
           return index != -1 ? notes.value.splice(index, 1) : ''
         })
+
+        successMessage.value = "Note Deleted"
+        isNew.value = true
 
         cancelDelete()
       }
@@ -250,6 +276,9 @@ import { noteService } from '../services/services'
         save,
         cancelDelete,
         deleteNote,
+        isNew,
+        closeMessage,
+        successMessage
       }
     },
 
@@ -274,6 +303,10 @@ import { noteService } from '../services/services'
 <style>
 .container {
   margin-top: 20px;
+}
+
+.success-message {
+  margin-left: 12px;
 }
 
 thead > tr > th {

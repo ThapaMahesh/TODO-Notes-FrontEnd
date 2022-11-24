@@ -10,15 +10,18 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## [Demo](https://main.d21pfuewvjwmcm.amplifyapp.com/)
+https://main.d21pfuewvjwmcm.amplifyapp.com/
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## [Api](https://myapi-dpeg.onrender.com/notes)
+## [Api](http://myapi-env.eba-j2mwvhwx.eu-west-2.elasticbeanstalk.com/notes)
+
+## Screenshots
+![Main page](./public/app_screenshots/main.jpg?raw=true "Main Page")
+![Add Modal](/repository/assets/add_note.png?raw=true "Add Modal")
+![Add Success](/repository/assets/new_note.png?raw=true "Add Success")
+![Show Delete](/repository/assets/show_delete.png?raw=true "Show Delete")
+![Delete Success](/repository/assets/note_delete.png?raw=true "Delete Success")
+
+
