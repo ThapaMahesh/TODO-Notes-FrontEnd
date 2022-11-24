@@ -49,16 +49,13 @@
         class="elevation-1"
         show-select
       >
-        <template v-slot:header.name="{ header }">
-          {{ header }}
-        </template>
       </v-data-table>
       </v-col>
 
       <v-col>
         <v-dialog
           v-model="dialog"
-          max-width="500px"
+          max-width="600px"
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -67,17 +64,19 @@
               class="mb-2 float-right"
               v-bind="attrs"
               v-on="on"
+              id="add-btn"
+              tile
             >
-              New Item
+              Add
             </v-btn>
           </template>
           <v-card>
             <v-card-title>
-              <span class="text-h5">New Item</span>
+              <span class="text-h5">Add Note</span>
             </v-card-title>
 
             <v-card-text>
-              <v-form v-model="valid" ref="form">
+              <v-form ref="form">
               <v-container>
                 <v-row>
                   <v-col
@@ -89,6 +88,7 @@
                       v-model="editedItem.title"
                       label="Add Title"
                       :rules="titleFieldRule"
+                      id="title"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -100,6 +100,7 @@
                       v-model="editedItem.content"
                       label="Add Content"
                       :rules="contentFieldRule"
+                      id="content"
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -107,22 +108,25 @@
               </v-form>
             </v-card-text>
 
-            <v-card-actions>
-              <v-spacer></v-spacer>
+            <v-card-actions class="action-btn">
+              <!-- <v-spacer></v-spacer> -->
               <v-btn
                 color="blue darken-1"
                 text
                 @click="close"
+                id="close-btn"
               >
                 Cancel
               </v-btn>
               <v-btn
-                color="blue darken-1"
-                text
+                color="primary"
                 @click="save"
+                tile
+                id="save-btn"
               >
                 Save
               </v-btn>
+            <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -142,10 +146,10 @@
             Do you want to delete this note?
           </v-col>
           <v-col class="shrink">
-            <v-btn @click="cancelDelete" color="error">No</v-btn>
+            <v-btn @click="cancelDelete" color="error" id="cancel-btn">No</v-btn>
           </v-col>
           <v-col class="shrink">
-            <v-btn @click="deleteNote" color="white red--text">Yes</v-btn>
+            <v-btn @click="deleteNote" color="white red--text" id="delete-btn">Yes</v-btn>
           </v-col>
         </v-row>
       </v-alert>
@@ -163,7 +167,6 @@ import { noteService } from '../services/services'
 
     setup(){
       const { getNotes } = noteService();
-      const valid = false
       const form = ref(null)
       const titleFieldRule = [
         v => !!v || 'Title is required',
@@ -203,9 +206,7 @@ import { noteService } from '../services/services'
       }
 
       const save = () => {
-        form.value.validate()
-
-        if(!valid.value) return false
+        if(!form.value.validate()) return false
 
         var lastItem = notes.value[notes.value.length-1]
         notes.value.push({
@@ -244,7 +245,6 @@ import { noteService } from '../services/services'
         selected,
         titleFieldRule,
         contentFieldRule,
-        valid,
         form,
         close,
         save,
@@ -274,5 +274,18 @@ import { noteService } from '../services/services'
 <style>
 .container {
   margin-top: 20px;
+}
+
+thead > tr > th {
+  background-color: #757575 !important;
+  border-color: #757575 !important;
+}
+
+.v-dialog {
+  overflow: hidden;
+}
+
+.action-btn {
+  display: unset;
 }
 </style>

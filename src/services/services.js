@@ -16,3 +16,5 @@ export const noteService = () => {
     getNotes,
   }
 }
+
+export default nodeApi;
